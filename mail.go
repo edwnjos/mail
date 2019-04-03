@@ -57,9 +57,6 @@ func (m *Mail) isValid() error {
 	if err := isNameValid(m.From.Name); err != nil {
 		return fmt.Errorf("`from` name not valid: %s", err.Error())
 	}
-	if err := isEmailValid(m.From.Addr); err != nil {
-		return fmt.Errorf("`from` email not valid: %s", err.Error())
-	}
 
 	if err := isSubjectValid(m.Subject); err != nil {
 		return fmt.Errorf("subject not valid: %s", err.Error())
