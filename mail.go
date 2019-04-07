@@ -50,7 +50,7 @@ func (m *Mail) isValid() error {
 	if err := isNameValid(m.To.Name); err != nil {
 		return fmt.Errorf("`to` name not valid: %s", err.Error())
 	}
-	if err := isEmailValid(m.To.Addr); err != nil {
+	if err := checkmail.ValidateFormat(m.To.Addr); err != nil {
 		return fmt.Errorf("`to` email not valid: %s", err.Error())
 	}
 
@@ -83,13 +83,6 @@ func isNameValid(n string) error {
 		return fmt.Errorf("cannot be longer than 72 chars: %s", n)
 	}
 	return nil
-}
-
-func isEmailValid(e string) error {
-	if err := checkmail.ValidateFormat(e); err != nil {
-		return err
-	}
-	return checkmail.ValidateHost(e)
 }
 
 func isSubjectValid(s string) error {

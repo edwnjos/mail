@@ -100,20 +100,6 @@ func TestIsValidOkFromEmail(t *testing.T) {
 	}
 }
 
-func TestIsValidNotOkFromEmail(t *testing.T) {
-	m := Mail{
-		To:      Acct{Name: "Edwin J", Addr: "joseedwin84@gmail.com"},
-		From:    Acct{Name: "AWESOME PLATFORM TEAM", Addr: "joseedwin84gmail.com"},
-		Subject: "hello world email",
-		Body:    []byte("hello:D"),
-		Client:  SendgridClient,
-		AuthKey: "awesome key",
-	}
-	if err := m.isValid(); err == nil {
-		t.Error("should return: err but got: nil")
-	}
-}
-
 func TestIsValidOkSubject(t *testing.T) {
 	m := Mail{
 		To:      Acct{Name: "Edwin J", Addr: "joseedwin84@gmail.com"},
